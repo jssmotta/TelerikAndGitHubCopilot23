@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "E-mail";
+}
+@{
+}
+@model TelerikAspNetCoreApp1.Models.ContactFormModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+        @(Html.Kendo().TextBoxFor(model => model.Name).HtmlAttributes(new { @class = "form-control" }))
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label" })
+        @(Html.Kendo().DatePickerFor(model => model.DateOfBirth).HtmlAttributes(new { @class = "form-control" }))
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+        @(Html.Kendo().TextBoxFor(model => model.Email).HtmlAttributes(new { @class = "form-control" }))
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Subject, new { @class = "control-label" })
+        @(Html.Kendo().TextBoxFor(model => model.Subject).HtmlAttributes(new { @class = "form-control" }))
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+        @(Html.Kendo().TextAreaFor(model => model.Description).HtmlAttributes(new { @class = "form-control" }))
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReturnDate, new { @class = "control-label" })
+        @(Html.Kendo().DatePickerFor(model => model.ReturnDate).HtmlAttributes(new { @class = "form-control" }))
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Send Email" class="btn btn-primary" />
+    </div>
+}

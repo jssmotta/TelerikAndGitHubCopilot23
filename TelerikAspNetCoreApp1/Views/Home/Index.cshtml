@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+
+<div class="placeholders mb-2">
+    <div class="row d-flex justify-content-start">
+        <div class="col-md-2 mb-3 placeholder">
+            <img class="img-fluid " alt="200x200" src="~/Images/200.png">
+        </div>
+        <div class="col-md-3">
+            <h2>Lorem ipsum dolor sit amet...</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book.
+            </p>
+            <p>
+                @(Html.Kendo().Button().Name("PrimaryButton").ThemeColor(ThemeColor.Primary).Content("Primary Button"))
+            </p>
+        </div>
+        <div class="col-md-3">
+            <h2>&nbsp;</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book.
+            </p>
+            <p>
+                @(Html.Kendo().Button().Name("TextButton").Content("Button"))
+            </p>
+        </div>
+        <div class="col-md-3">
+            <h2>&nbsp;</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book.
+            </p>
+            <p>
+                @(Html.Kendo().Button().Name("Button").Content("Button"))
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @(Html.Kendo().Grid <TelerikAspNetCoreApp1.Models.OrderViewModel>()
+                            .Name("grid")
+                            .Columns(columns =>
+                            {
+                                columns.Bound(p => p.OrderID).Filterable(false);
+                                columns.Bound(p => p.Freight);
+                                columns.Bound(p => p.OrderDate).Format("{0:MM/dd/yyyy}");
+                                columns.Bound(p => p.ShipName);
+                                columns.Bound(p => p.ShipCity);
+                            })
+                            .Pageable()
+                            .Sortable()
+                            .Scrollable()
+                            .Groupable()
+                            .Filterable()
+                            .HtmlAttributes(new { style = "height:550px;" })
+                            .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .PageSize(20)
+                                .Read(read => read.Action("Orders_Read", "Grid"))
+                             )
+        )
+    </div>
+</div>
+
+
